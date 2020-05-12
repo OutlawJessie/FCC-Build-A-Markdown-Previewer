@@ -11,3 +11,13 @@ h1{
     text-align: center;
     color: green;
 }
+
+#form-div {
+    display: block;
+    text-align: center;
+}
+
+form {
+    display: inline-block;
+    margin: 0 auto 0 auto;
+}

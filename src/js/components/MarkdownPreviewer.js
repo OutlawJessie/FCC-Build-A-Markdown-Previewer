@@ -7,73 +7,60 @@ function PageTitle() {
 }
 
 
-class Editor extends React.Component {
-  constructor(props) {
-      super(props);
-      this.state = {
-	  editorText: 'Will enter markdown text here...'
-      };
-    this.handleChange = this.handleChange.bind(this);
-      
-  }
-
-  handleChange(event) {
-    this.setState({editorText: event.target.value});
-  }
-    
-  render() {
+function Editor(props) {
       return (
 	  <div>
 	      <h2>Editor</h2>
               <form>
               <textarea
-	  id = "editor"
-	  type="text"
-	  value={this.state.editorText}
-	  onChange={this.handleChange} />
+	        id = "editor"
+	        type="text"
+	        value={props.editorText}//{this.state.editorText}
+	        onChange={props.handleChange}//onChange={this.handleChange}
+	      />
 	      </form>
-	      </div>
+	  </div>
     );
-  }
 }
 
 
-class Previewer extends React.Component {
-  constructor(props) {
-    super(props);
-      this.state = {
-	  markdownText: 'Results will appear here...'
-      };
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(event) {
-    this.setState({markdownText: event.target.value});
-  }
-
-  render() {
+function Previewer(props) {
       return (
 	  <div>
 	      <h2>Previewer</h2>
-              <div id="preview">{this.state.markdownText}</div>
+              <div id="preview">{props.markdownText}</div>	      
 	  </div>
     );
-  }
 }
 
 
 
 class App extends Component {
   constructor(props) {
-    super(props);
+      super(props);
+      this.state = {
+	  editorText: 'Will enter markdown text here...',
+	  markdownText: 'Results will appear here...'
+      };      
+    this.handleChange = this.handleChange.bind(this);      
   }
+  
+    handleChange(event) {
+
+      this.setState({
+	  editorText: event.target.value,
+	  markdownText: this.state.editorText
+      }); // TODO: need to fix lag in upadate for markdownText in Previewer function
+
+
+    }
     
   render() {
       return (
 	  <div>
               <PageTitle />
-	      <Editor />
-	      <Previewer />
+	      <Editor editorText={this.state.editorText} handleChange={this.handleChange}/>	      
+	      <Previewer markdownText={this.state.markdownText}  />
 	  </div>
       )
   }

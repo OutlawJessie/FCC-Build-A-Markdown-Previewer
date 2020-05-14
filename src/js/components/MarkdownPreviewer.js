@@ -35,19 +35,16 @@ And this is an embedded image of the React logo:
 
 
 
-
-
-
-
+/* Page title header. Markdown will create another header that is not the page header.*/
 function PageTitle() {
-    return  <h1>Markdown Previewer</h1>;
+    return  <h1 id="true-page-header">Markdown Previewer</h1>;
 }
 
-
+/* Markdown Editor */
 function Editor(props) {
       return (
-	  <div>
-	      <h2>Editor</h2>
+	  <div className="column">
+	      <h2 className="true-h2">Editor</h2>
               <form>
               <textarea
 	        id = "editor"
@@ -60,11 +57,11 @@ function Editor(props) {
     );
 }
 
-
+/* Markdown Previewer (result of editor) */
 function Previewer(props) {
       return (
-	  <div>
-	      <h2>Previewer</h2>
+	  <div className="column">
+	      <h2 className="true-h2">Previewer</h2>
 	      {/*Call React dangerouslySetInnerHTML function*/}
         <div 
           id="preview"
@@ -75,7 +72,8 @@ function Previewer(props) {
 }
 
 
-
+/* App component keeps track of Editor text and uses that to set
+   Previewer text. */
 class App extends Component {
   constructor(props) {
       super(props);
@@ -85,9 +83,9 @@ class App extends Component {
       };      
     this.handleChange = this.handleChange.bind(this);      
   }
-  
-    handleChange(event) {
 
+    // Keep track of editor text, and set markdown text.
+    handleChange(event) {
       this.setState({
 	  editorText: event.target.value,
 	  markdownText: marked(event.target.value)
@@ -95,13 +93,14 @@ class App extends Component {
 
 
     }
-    
     render() {
       return (
 	  <div>
               <PageTitle />
-	      <Editor editorText={this.state.editorText} handleChange={this.handleChange}/>	      
-	      <Previewer markdownText={this.state.markdownText} handleChange={this.handleChange} />
+	        <div className="row">
+	        <Editor editorText={this.state.editorText} handleChange={this.handleChange}/>	      
+	        <Previewer markdownText={this.state.markdownText} handleChange={this.handleChange} />
+	      </div>
 	  </div>
       )
   }

@@ -29,6 +29,7 @@ function sayHello(firstLine, lastLine) {
 - This is a list
   - With items.
   - and sub-item
+						      
 And this is an embedded image of the React logo:						      
 ![React Logo w/ Text](https://goo.gl/Umyytc)
 `;
@@ -43,9 +44,9 @@ function PageTitle() {
 /* Markdown Editor */
 function Editor(props) {
       return (
-	  <div className="column">
+	  <div className="column editor-page">
 	      <h2 className="true-h2">Editor</h2>
-              <form>
+              <form id="editor-form">
               <textarea
 	        id = "editor"
 	        type="text"
@@ -60,8 +61,8 @@ function Editor(props) {
 /* Markdown Previewer (result of editor) */
 function Previewer(props) {
       return (
-	  <div className="column">
-	      <h2 className="true-h2">Previewer</h2>
+	  <div className="column preview-result-page">
+	      <h2 className="true-h2" id="preview-h2">Previewer</h2>
 	      {/*Call React dangerouslySetInnerHTML function*/}
         <div 
           id="preview"
@@ -98,8 +99,9 @@ class App extends Component {
 	  <div>
               <PageTitle />
 	        <div className="row">
-	        <Editor editorText={this.state.editorText} handleChange={this.handleChange}/>	      
-	        <Previewer markdownText={this.state.markdownText} handleChange={this.handleChange} />
+	          <Editor editorText={this.state.editorText} handleChange={this.handleChange}/>
+	          <div className="spacer" />
+	          <Previewer markdownText={this.state.markdownText} handleChange={this.handleChange} />
 	      </div>
 	  </div>
       )

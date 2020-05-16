@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --open --mode development",
-    "build": "webpack --mode production"
+      "build": "webpack --mode production",
+       "predeploy": "npm run build",
+      "deploy": "gh-pages -d dist",
+       "eject": "react-scripts eject"
   },
   "repository": {
     "type": "git",
@@ -17,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/OutlawJessie/FCC-Build-A-Markdown-Previewer/issues"
   },
-  "homepage": "https://github.com/OutlawJessie/FCC-Build-A-Markdown-Previewer#readme",
+  "homepage": "https://github.com/OutlawJessie/FCC-Build-A-Markdown-Previewer",
   "dependencies": {
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
@@ -28,6 +31,7 @@
     "@babel/preset-react": "^7.9.4",
     "babel-loader": "^8.1.0",
     "css-loader": "^3.5.3",
+    "gh-pages": "^2.2.0",
     "html-loader": "^1.1.0",
     "html-webpack-plugin": "^4.3.0",
     "style-loader": "^1.2.1",
